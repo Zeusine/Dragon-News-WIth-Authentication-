@@ -34,8 +34,7 @@ const Middle = () => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [param.id,news])
-    console.log("conditional news",conditionalNews);
-    console.log("news", news);
+    
     
 
 

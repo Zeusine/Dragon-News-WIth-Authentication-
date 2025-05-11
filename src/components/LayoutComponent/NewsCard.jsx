@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaEye } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 const NewsCard = ({ news }) => {
     const truncateDescription = (description, length) => {
@@ -24,7 +25,7 @@ const NewsCard = ({ news }) => {
                 <h3 className="card-title text-xl font-semibold">{news.title}</h3>
                 <p className="text-gray-700 text-base">
                     {truncateDescription(news.details, 150)} {/* Truncate to 150 characters */}
-                    <button className='text-yellow-600 font-black'>Read More</button>
+                    <Link to={`/news/${news.id}`} className='text-yellow-600 font-black'>Read More</Link>
                 </p>
                 <hr className='border-gray-200' />
 

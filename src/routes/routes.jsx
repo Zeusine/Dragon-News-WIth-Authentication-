@@ -5,6 +5,8 @@ import Middle from '../components/LayoutComponent/Middle';
 import AuthLayout from '../layouts/AuthLayout';
 import Login from '../components/Pages/Login';
 import Register from '../components/Pages/Register';
+import NewsDetails from '../components/LayoutComponent/NewsDetails';
+import PrivateRoute from './PrivateRoute';
 
 const routes = createBrowserRouter([
     {
@@ -24,8 +26,8 @@ const routes = createBrowserRouter([
         ]
     },
     {
-        path: "/news",
-        element: <h1>News Layout</h1>
+        path: "/news/:id",
+        element: <PrivateRoute><NewsDetails></NewsDetails></PrivateRoute>
     },
     {
         path: "/auth",
