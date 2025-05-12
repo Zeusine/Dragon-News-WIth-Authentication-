@@ -1,0 +1,12 @@
+specVersion: "v1"
+serviceId: "dragon-news-with-authorization"
+location: "us-central1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "dragon-news-with-authorization-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]

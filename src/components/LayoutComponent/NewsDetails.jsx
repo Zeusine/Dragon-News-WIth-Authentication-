@@ -20,7 +20,7 @@ const NewsDetails = () => {
 
     }, [news])
 
-    console.log(selectedNews);
+    // console.log(selectedNews);
     
 
 

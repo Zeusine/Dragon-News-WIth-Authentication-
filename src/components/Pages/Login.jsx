@@ -1,9 +1,13 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Firebase/AuthProvider';
 
 const Login = () => {
     const { signInUser } = useContext(AuthContext)
+    const [error, setError] = useState({})
+    const location = useLocation()
+    const navigate = useNavigate()
+    
     const handleSubmit = (e) => {
         e.preventDefault()
         const form = e.target;
@@ -11,17 +15,23 @@ const Login = () => {
         const email = form.email.value;
         signInUser(email,password)
         .then((user) => {
-            console.log(user.user);
+            // console.log(user.user);
+            navigate(location?.state? location.state: "/")
+
             
             
             
         })
-        .catch((error) => {
-            console.log(error.message);
+        .catch((err) => {
+            setError({...error, login: err.code})
+            // console.log(err);
+            
             
         })
         
     }
+    // console.log(error);
+    
     return (
         <div>
             <div className="hero  mt-30">
@@ -39,7 +49,11 @@ const Login = () => {
                                     <input type="password"
                                     name='password'
                                     className="input" placeholder="Password" />
+                                    
                                     <div><a className="link link-hover">Forgot password?</a></div>
+                                    {
+                                        error.login && <label className="label">{error.login}</label>
+                                    }
                                     <button className="btn btn-neutral mt-4">Login</button>
                                 </fieldset>
                             </form>

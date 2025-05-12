@@ -4,7 +4,7 @@ import loginLogo from "../assets/user.png"
 import { AuthContext } from '../Firebase/AuthProvider';
 const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext);
-    console.log(user);
+    
 
     return (
         <div className='flex justify-between mt-3 items-center'>

@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Firebase/AuthProvider';
+import { useNavigate } from 'react-router';
 
 const Register = () => {
-    const { signUpUser, setUser, user } = useContext(AuthContext)
+    const { signUpUser, setUser, user, updateProfileUser } = useContext(AuthContext)
+    const navigate =useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
         const form = new FormData(e.target);
@@ -17,13 +19,23 @@ const Register = () => {
         .then((result) => {
             const user = result.user;
             setUser(user)
+            updateProfileUser({displayName : name, photoURL : url})
+            .then(() => {
+                navigate("/")
+
+            })
+            .catch((error) => {
+                // console.log(error);
+                
+            })
+
 
             
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log((errorCode, errorMessage));
+            // console.log((errorCode, errorMessage));
             
 
 
@@ -35,7 +47,7 @@ const Register = () => {
 
 
     }
-    console.log(user);
+    // console.log(user);
     return (
         <div>
             <div className="hero  mt-30 ">
